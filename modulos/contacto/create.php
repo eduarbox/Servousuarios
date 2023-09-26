@@ -152,9 +152,9 @@ ob_end_clean(); // Limpia el búfer de salida
                 <div class="form-group">
                   <label for="servidor">Servidor</label>
                   <select class="form-control" name="servidor" id="servidor">
-                    <option value="172.16.0.117">187.210.117.201</option>
-                    <option value="172.16.0.118">187.210.117.202</option>
-                    <option value="172.16.0.114">187.210.117.203</option>
+                    <option value="187.210.117.201">187.210.117.201</option>
+                    <option value="187.210.117.202">187.210.117.202</option>
+                    <option value="187.210.117.203">187.210.117.203</option>
                   </select>
                 </div>
               </div>
@@ -256,36 +256,36 @@ ob_end_clean(); // Limpia el búfer de salida
 
     // Define un objeto que mapea cada campus a su servidor correspondiente
     const campusServidorMap = {
-      "DURANGO": "172.16.0.118",
-      "MANZANILLO": "172.16.0.118",
-      "MEXICALI": "172.16.0.118",
-      "MONCLOVA": "172.16.0.118",
-      "MORELIA": "172.16.0.118",
-      "NAVOJOA": "172.16.0.118",
-      "OBREGÓN": "172.16.0.118",
-      "PLAYA DEL CARMEN": "172.16.0.118",
-      "PUERTO VALLARTA": "172.16.0.118",
-      "TEPIC": "172.16.0.118",
-      "TULANCINGO": "172.16.0.118",
+      "DURANGO": "187.210.117.202",
+      "MANZANILLO": "187.210.117.202",
+      "MEXICALI": "187.210.117.202",
+      "MONCLOVA": "187.210.117.202",
+      "MORELIA": "187.210.117.202",
+      "NAVOJOA": "187.210.117.202",
+      "OBREGÓN": "187.210.117.202",
+      "PLAYA DEL CARMEN": "187.210.117.202",
+      "PUERTO VALLARTA": "187.210.117.202",
+      "TEPIC": "187.210.117.202",
+      "TULANCINGO": "187.210.117.202",
 
-      "ACUÑA": "172.16.0.117",
-      "CAMPECHE": "172.16.0.117",
-      "DELICIAS": "172.16.0.117",
-      "PIEDRAS NEGRAS": "172.16.0.117",
-      "SALTILLO": "172.16.0.117",
+      "ACUÑA": "187.210.117.201",
+      "CAMPECHE": "187.210.117.201",
+      "DELICIAS": "187.210.117.201",
+      "PIEDRAS NEGRAS": "187.210.117.201",
+      "SALTILLO": "187.210.117.201",
 
-      "CHETUMAL": "172.16.0.114",
-      "COLIMA": "172.16.0.114",
-      "ENSENADA": "172.16.0.114",
-      "GUAYMAS": "172.16.0.114",
-      "HERMOSILLO": "172.16.0.114",
-      "LÁZARO CÁRDENAS": "172.16.0.114",
-      "SALINA CRUZ": "172.16.0.114",
-      "SAN LUIS RÍO COLORADO": "172.16.0.114",
-      "TIJUANA": "172.16.0.114",
-      "TORREÓN": "172.16.0.114",
-      "URUAPAN": "172.16.0.114",
-      "VICTORIA": "172.16.0.114", // Agrega una coma aquí
+      "CHETUMAL": "187.210.117.203",
+      "COLIMA": "187.210.117.203",
+      "ENSENADA": "187.210.117.203",
+      "GUAYMAS": "187.210.117.203",
+      "HERMOSILLO": "187.210.117.203",
+      "LÁZARO CÁRDENAS": "187.210.117.203",
+      "SALINA CRUZ": "187.210.117.203",
+      "SAN LUIS RÍO COLORADO": "187.210.117.203",
+      "TIJUANA": "187.210.117.203",
+      "TORREÓN": "187.210.117.203",
+      "URUAPAN": "187.210.117.203",
+      "VICTORIA": "187.210.117.203", 
       "N/L": "", // Deja este en blanco o establece un valor predeterminado
     };
 

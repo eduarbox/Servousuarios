@@ -26,7 +26,6 @@ $mail->setFrom('edogary@gmail.com', 'Patronato Cultural Vizcaya.');
 // Agregar una copia (CC) al correo electrónico almacenado en la variable $contacto['email']
 //$mail->addCC(eduarbox@icloud.com);
 
-
 $mail->addReplyTo('control_equipos@uva.edu.mx', 'Patronato Cultural Vizcaya.');
 $mail->isHTML(true);
 
@@ -35,15 +34,11 @@ $db = "phpcrud";
 $username = "root";
 $password = "";
 
-
-
 try {
     $conexion = new PDO("mysql:host=$servidor;dbname=$db", $username, $password);
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-
-
 // Verificar la conexión
 if ($conexion) {
     // Verificar si se ha enviado un ID desde el formulario
@@ -66,7 +61,6 @@ if ($conexion) {
 
             // Configuración del mensaje
             $mail->Subject = 'Credenciales para Servo Escolar';
-
             // Construir el cuerpo del correo con estilos de color
             $body = '
             <html>
@@ -106,22 +100,24 @@ if ($conexion) {
             <h1>Asunto: Credenciales para Servo Escolar</h1>
             <p>Estimado usuario ' . $contacto['nombre'] . ' ' . $contacto['apaterno'] . ' ' . $contacto['amaterno'] . ',</p>
             <p>Es un placer darle la bienvenida al sistema Servo Escolar y compartir con usted sus credenciales de acceso. Le recordamos que el buen uso de estas credenciales es fundamental y recae en su responsabilidad.</p>
-            <p>Aquí tienes la información de acceso:</p>
             <ul>
             <li>Apellido Paterno: ' . $contacto['apaterno'] . '</li>
             <li>Apellido Materno: ' . $contacto['amaterno'] . '</li>
             <li>Nombre: ' . $contacto['nombre'] . '</li>
             <li>Email: ' . $contacto['email'] . '</li>
+            <br>
             <li>Perfil: ' . $contacto['perfil'] . '</li>
             <li>Servidor: ' . $contacto['servidor'] . '</li>
             <li>Campus: ' . $contacto['campus'] . '</li>
-            <li>Caja: ' . $contacto['caja'] . ' (Esta puede ser modificada a conveniencia)</li>
-            <li>Clave de Caja: ' . $contacto['cajaclave'] . '</li>
-            <li>Usuario Escritorio Remoto: ' . $contacto['uescritorio'] . '</li>
-            <li>Clave de Escritorio Remoto: ' . $contacto['uescritorioclave'] . '</li>
-            <li>Usuario Servo Escolar: ' . $contacto['uservo'] . '</li>
-            <li>Clave de Usuario Servo Escolar: ' . $contacto['uservoclave'] . '</li>
-            <li>Fecha de Inicio: ' . date('d M Y', strtotime($contacto['fechaini'])) . '</li>
+            <br>
+            <li>Escritorio Remoto Usuario: ' . $contacto['uescritorio'] . '</li>
+            <li>Escritorio Remoto Clave: ' . $contacto['uescritorioclave'] . '</li>
+            <br>
+            <li>Servo Escolar Usuario: ' . $contacto['uservo'] . '</li>
+            <li>Servo Escolar Clave: ' . $contacto['uservoclave'] . '</li>
+            <br>
+            <li>Fecha de Creación: ' . date('d M Y', strtotime($contacto['fechaini'])) . '</li>
+            <br>
             </ul>
             <p>Saludos,</p>
             <p>Sistemas Corporativo</p>
@@ -138,18 +134,28 @@ if ($conexion) {
 
             // Enviar el correo electrónico
             if ($mail->send()) {
-                echo 'Se ha enviado con éxito el correo';
+                include("../../template/header.php"); // Incluye el encabezado del sitio web
+                echo 'Se ha enviado con éxito el correo con el siguiente contenido:';
+                echo $body; // Incluye el cuerpo del correo enviado.
+                echo '<br><a href="javascript:history.back()">Atrás</a>';   // Botón para volver atrás
+                include("../../template/footer.php"); // Incluye el encabezado del sitio web
+
             } else {
                 echo "No se pudo enviar el correo Error: {$mail->ErrorInfo}";
+                
+                echo '<br><a href="javascript:history.back()">Atrás</a>'; // Botón para volver atrás
             }
         } else {
             // Maneja la situación en la que no se encontró la fila por el ID
             echo "No se encontró la fila con el ID proporcionado.";
+            echo '<br><a href="javascript:history.back()">Atrás</a>'; // Botón para volver atrás
         }
     } else {
         // Maneja la situación en la que no se proporcionó un ID válido
         echo "ID no válido.";
+        echo '<br><a href="javascript:history.back()">Atrás</a>'; // Botón para volver atrás
     }
 } else {
     echo "Error de conexión a la base de datos.";
+    echo '<br><a href="javascript:history.back()">Atrás</a>';     // Botón para volver atrás
 }
