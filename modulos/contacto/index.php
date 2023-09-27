@@ -1,4 +1,11 @@
+<!-- index.php -->
 <?php include("../../template/header.php"); // Incluye el encabezado del sitio web ?>
+<?php include("buscar.php"); // Incluye el encabezado del sitio web ?>
+
+  <!-- ... Otros elementos head ... -->
+  <script src="buscar.js" ></script>
+
+
 
 <?php
 include("../../conexion.php"); // Incluye el archivo de conexión a la base de datos
@@ -21,6 +28,12 @@ if (isset($_GET['id'])) {
 </button>
 
 <?php include("create.php"); // Incluye el formulario de creación de nuevo contacto ?>
+
+<!-- Agrega un campo de búsqueda -->
+<input type="text" id="terminoDeBusqueda" placeholder="Buscar">
+
+<!-- Contenedor para mostrar los resultados de búsqueda en tiempo real -->
+<div id="resultados"></div>
 
 <style>
     /* Estilos CSS para personalizar la apariencia de la tabla */
@@ -126,5 +139,7 @@ if (isset($_GET['id'])) {
         });
     });
 </script>
+
+
 
 <?php include("../../template/footer.php"); ?>
