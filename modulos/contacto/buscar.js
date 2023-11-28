@@ -1,30 +1,34 @@
-// buscar.js
-
 // Función para realizar la búsqueda en tiempo real
 function buscarEnTiempoReal() {
     // Obtén el valor del campo de búsqueda
-    const terminoDeBusqueda = document.getElementById("terminoDeBusqueda").value;
-  
+    const terminoDeBusqueda = document.getElementById("terminoDeBusqueda").value.toLowerCase();
+
     // Verifica si el campo de búsqueda no está vacío
     if (terminoDeBusqueda.trim() !== "") {
-        // Realiza una solicitud AJAX al archivo buscar.php
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", `buscar.php?termino=${terminoDeBusqueda}`, true);
-      
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Actualiza el div de resultados con los resultados de búsqueda
-                document.getElementById("resultados").innerHTML = xhr.responseText;
+        // Obtén todas las filas de la tabla
+        const filas = document.querySelectorAll('.table tbody tr');
+
+        // Itera sobre las filas y muestra u oculta según la coincidencia
+        filas.forEach((fila) => {
+            const contenidoFila = fila.innerText.toLowerCase();
+            if (contenidoFila.includes(terminoDeBusqueda)) {
+                fila.style.display = 'table-row';
+            } else {
+                fila.style.display = 'none';
             }
-        };
-      
-        xhr.send();
+        });
     } else {
-        // Si el campo de búsqueda está vacío, puedes manejarlo de acuerdo a tus necesidades
-        // Por ejemplo, aquí simplemente limpiamos los resultados
-        document.getElementById("resultados").innerHTML = "";
+        // Si el campo de búsqueda está vacío, muestra todas las filas
+        const filas = document.querySelectorAll('.table tbody tr');
+        filas.forEach((fila) => {
+            fila.style.display = 'table-row';
+        });
     }
 }
 
 // Agrega un evento de cambio al campo de búsqueda para buscar en tiempo real
-document.getElementById("terminoDeBusqueda").addEventListener("input", buscarEnTiempoReal);
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("terminoDeBusqueda").addEventListener("input", buscarEnTiempoReal);
+    
+    // Resto del código...
+});

@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="../../assets/css/me.css">
+/* Agrega estilos para el contenedor de la tabla */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para la tabla */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    margin-top: 10px; /* Ajusta el margen según tus necesidades */
+}
+
+/* Estilos para las filas de la tabla */
+.table tr {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #BDBDBD;
+}
+
+/* Estilos para las celdas de la tabla */
+.table td {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}

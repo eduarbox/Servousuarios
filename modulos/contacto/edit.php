@@ -60,9 +60,28 @@ if ($_POST) {
   $stm->bindParam(":txtid", $txtid);
   $stm->execute();
 
-  header("location:index.php");
+  echo '<script>window.location.href = "index.php";</script>';
+  exit(); // Asegura que el script se detenga después de la redirección
 }
 ?>
+
+<style>
+  .btn-danger {
+    border: 1px solid red;
+    /* Borde con color personalizado */
+    background-color: pink;
+    color: black;
+
+  }
+
+  .btn-primary {
+    border: 1px solid blue#;
+    /* Borde con color personalizado */
+    background-color: #E0E7F4;
+    color: black;
+  }
+</style>
+
 <form action="" method="post">
   <input type="hidden" class="form-control" name="txtid" value="<?php echo $txtid; ?>" placeholder="hidden">
 
@@ -99,80 +118,80 @@ if ($_POST) {
   </div>
 
   <hr>
-<div class="row">
+  <div class="row">
     <div class="col-md-4">
-        <div class="form-group">
-            <label for="perfil">Perfil</label>
-            <input type="text" class="form-control" name="perfil" value="<?php echo $perfil; ?>" id="perfil" placeholder="Perfil">
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="servidor">Servidor</label>
-            <input type="text" class="form-control" name="servidor" value="<?php echo $servidor; ?>" id="servidor" placeholder="Servidor">
-        </div>
+      <div class="form-group">
+        <label for="perfil">Perfil</label>
+        <input type="text" class="form-control" name="perfil" value="<?php echo $perfil; ?>" id="perfil" placeholder="Perfil">
+      </div>
     </div>
 
     <div class="col-md-4">
-        <div class="form-group">
-            <label for="campus">Campus</label>
-            <input type="text" class="form-control" name="campus" value="<?php echo $campus; ?>" id="campus" placeholder="Campus">
-        </div>
-    </div>
-</div>
-<hr>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="caja">Caja</label>
-            <input type="text" class="form-control" name="caja" value="<?php echo $caja; ?>" id="caja" placeholder="No. Caja">
-        </div>
+      <div class="form-group">
+        <label for="servidor">Servidor</label>
+        <input type="text" class="form-control" name="servidor" value="<?php echo $servidor; ?>" id="servidor" placeholder="Servidor">
+      </div>
     </div>
 
-    <div class="col-md-6">
-        <!-- Contraseña Caja -->
-        <div class="form-group">
-            <label for="cajaclave">Contraseña Caja</label>
-            <input type="text" class="form-control" name="cajaclave" value="<?php echo $cajaclave; ?>" id="cajaclave" placeholder="Contraseña Caja">
-        </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="campus">Campus</label>
+        <input type="text" class="form-control" name="campus" value="<?php echo $campus; ?>" id="campus" placeholder="Campus">
+      </div>
     </div>
-</div>
+  </div>
+  <hr>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="uescritorio">Usuario Escritorio</label>
-            <input type="text" class="form-control" name="uescritorio" value="<?php echo $uescritorio; ?>" id="uescritorio" placeholder="Usuario Escritorio">
-        </div>
+      <div class="form-group">
+        <label for="caja">Caja</label>
+        <input type="text" class="form-control" name="caja" value="<?php echo $caja; ?>" id="caja" placeholder="No. Caja">
+      </div>
     </div>
 
     <div class="col-md-6">
-        <!-- Contraseña Escritorio -->
-        <div class="form-group">
-            <label for="uescritorioclave">Contraseña Escritorio</label>
-            <input type="text" class="form-control" name="uescritorioclave" value="<?php echo $uescritorioclave; ?>" id="uescritorioclave" placeholder="Contraseña Escritorio">
-        </div>
+      <!-- Contraseña Caja -->
+      <div class="form-group">
+        <label for="cajaclave">Contraseña Caja</label>
+        <input type="text" class="form-control" name="cajaclave" value="<?php echo $cajaclave; ?>" id="cajaclave" placeholder="Contraseña Caja">
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="uservo">Usuario Servo</label>
-            <input type="text" class="form-control" name="uservo" value="<?php echo $uservo; ?>" id="uservo" placeholder="Usuario Servo">
-        </div>
+      <div class="form-group">
+        <label for="uescritorio">Usuario Escritorio</label>
+        <input type="text" class="form-control" name="uescritorio" value="<?php echo $uescritorio; ?>" id="uescritorio" placeholder="Usuario Escritorio">
+      </div>
     </div>
 
     <div class="col-md-6">
-        <!-- Contraseña Servo Escolar -->
-        <div class="form-group">
-            <label for="uservoclave">Contraseña Servo Escolar</label>
-            <input type="text" class="form-control" name="uservoclave" value="<?php echo $uservoclave; ?>" id="uservoclave" placeholder="Contraseña Servo Escolar">
-        </div>
+      <!-- Contraseña Escritorio -->
+      <div class="form-group">
+        <label for="uescritorioclave">Contraseña Escritorio</label>
+        <input type="text" class="form-control" name="uescritorioclave" value="<?php echo $uescritorioclave; ?>" id="uescritorioclave" placeholder="Contraseña Escritorio">
+      </div>
     </div>
-</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="uservo">Usuario Servo</label>
+        <input type="text" class="form-control" name="uservo" value="<?php echo $uservo; ?>" id="uservo" placeholder="Usuario Servo">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <!-- Contraseña Servo Escolar -->
+      <div class="form-group">
+        <label for="uservoclave">Contraseña Servo Escolar</label>
+        <input type="text" class="form-control" name="uservoclave" value="<?php echo $uservoclave; ?>" id="uservoclave" placeholder="Contraseña Servo Escolar">
+      </div>
+    </div>
+  </div>
 
 
 
@@ -184,12 +203,14 @@ if ($_POST) {
       </div>
     </div>
 
-  <br>
+    <br>
 
-  <div class="modal-footer">
-    <a href="index.php" class="btn btn-danger">Cancelar</a>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-  </div>
+    <div class="modal-footer">
+      <a href="index.php" class="btn btn-danger">Cancelar</a>
+      &nbsp;
+      &nbsp;
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+    </div>
 </form>
 
 <script>

@@ -4,6 +4,7 @@
 <?php include("buscar.php"); // Incluye el encabezado del sitio web 
 ?>
 
+<!-- ... Otros elementos head ... -->
 <script src="buscar.js"></script>
 
 <?php
@@ -30,31 +31,35 @@ if (isset($_GET['id'])) {
                 Nuevo <!-- Botón para mostrar un formulario de creación de nuevo contacto -->
             </button>
 
+
             <?php include("create.php"); // Incluye el formulario de creación de nuevo contacto 
             ?>
+
+
 
             <!-- Agrega un campo de búsqueda -->
             <div style="text-align: right;">
                 <input type="text" id="terminoDeBusqueda" placeholder="Buscar">
             </div>
 
+
             <!-- Contenedor para mostrar los resultados de búsqueda en tiempo real -->
             <div id="resultados"></div>
 
             <style>
                 /* Estilo para los encabezados de la tabla */
-                .table.table-light thead th {
-                    color: black;
+                .table.table-dark thead th {
+                    color: #fff;
                     /* Color del texto */
                     text-align: center;
                     /* Alineación del texto en el centro */
                     vertical-align: top;
                     /* Alineación vertical en la parte superior */
-                    border: 1px solid #F1FAFE;
+                    border: 1px solid #BDBDBD;
                     /* Borde con color personalizado */
                     padding: 10px;
                     /* Espaciado alrededor del contenido de la celda */
-                    background-color: #DFE8F5;
+                    background-color: #515A5A;
                     /* Color de fondo del encabezado */
                     margin: 10px;
                     /* Margen alrededor del encabezado */
@@ -63,7 +68,7 @@ if (isset($_GET['id'])) {
                 }
 
                 /* Estilo para las celdas del cuerpo de la tabla */
-                .table-light tbody td {
+                .table-dark tbody td {
                     font-size: 12px;
                     /* Tamaño de texto */
                     text-align: center;
@@ -79,62 +84,10 @@ if (isset($_GET['id'])) {
                     white-space: normal;
                     /* No permite saltos de línea en el texto */
                 }
-
-                .btn-danger {
-                    border: 1px solid #F1FAFE;
-                    /* Borde con color personalizado */
-                    background-color: pink;
-                    color: black;
-
-                }
-
-                .btn-warning {
-                    background-color: #FAD899;
-                    border: 1px solid #F1FAFE;
-                    /* Borde con color personalizado */
-                    color: white;
-                }
-
-                .btn-primary {
-                    border: 1px solid #F1FAFE;
-                    /* Borde con color personalizado */
-                    background-color: #E0E7F4;
-                    color: black;
-                }
-
-                .btn-secondary {
-
-                    /* Borde con color personalizado */
-                    background-color: #ECEDEE;
-                    color: black;
-                }
-
-                /* Cambiar el estilo  del botón de cierre */
-                .modal-header .close {
-
-                    background: url('../../assets/me/iconocerrar.svg') center center no-repeat;
-                    /* Ruta a tu ícono personalizado */
-                    background-size: contain;
-                    /* Ajusta el tamaño del fondo */
-                    width: 30px;
-                    /* Ancho del botón */
-                    height: 30px;
-                    /* Altura del botón */
-                    opacity: 1;
-                    /* Opacidad del botón */
-                    border-radius: 10%;
-                    /* Agrega esto para hacer que el botón sea circular */
-                }
-
-                .modal-header .close span {
-                    visibility: hidden;
-                    /* Oculta el contenido del botón */
-                }
             </style>
-
             <div class="table-responsive">
-                <table class="table table-light table-sm table-striped">
-                    <br>
+                <table class="table table-dark table-sm">
+                    <br> <!-- Salto de línea antes de la tabla -->
                     <thead>
                         <tr>
                             <!-- Encabezados de las columnas de la tabla -->
@@ -165,6 +118,7 @@ if (isset($_GET['id'])) {
                                 <td style="text-align: center; vertical-align: middle; font-size: 14px; "><?php echo date('d M Y', strtotime($contacto['fechaini'])); ?></td>
                                 <td style="text-align: right; vertical-align: top;">
                                     <form action="enviar_correo.php" method="post">
+
                                         <div class=" form-group">
                                             <!-- Agrega un campo oculto para almacenar la ID de la fila -->
                                             <input type="hidden" name="id" value="<?php echo $contacto['id']; ?>">
@@ -230,3 +184,34 @@ if (isset($_GET['id'])) {
 
 
         <?php include("../../template/footer.php"); ?>
+
+
+
+
+
+
+
+        create_function
+
+        <script>
+  // CAMPOS OBLIGATORIOS PARA PODER GUARDAR Espera a que se cargue completamente el contenido del documento HTML
+  document.addEventListener("DOMContentLoaded", function() {
+    // Obtén una referencia al formulario y a los campos relevantes
+    const formulario = document.querySelector("form");
+    const apaternoInput = document.getElementById("apaterno");
+    const amaternoInput = document.getElementById("amaterno");
+    const nombreInput = document.getElementById("nombre");
+    const cajaInput = document.getElementById("caja");
+
+    // Agrega un evento al formulario para escuchar cuando se intente enviar
+    formulario.addEventListener("submit", function(event) {
+      // Verifica si los campos de apellido paterno, materno y nombre están vacíos
+      if (apaternoInput.value.trim() === "" || amaternoInput.value.trim() === "" || cajaInput.value.trim() === "" || nombreInput.value.trim() === "") {
+        // Evita que el formulario se envíe
+        event.preventDefault();
+        // Muestra un mensaje de error
+        alert("Por favor, complete los campos obligatorios de Apellido Paterno, Apellido Materno, Nombre y Número de Caja.");
+      }
+    });
+  });
+</script>

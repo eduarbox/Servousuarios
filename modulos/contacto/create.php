@@ -27,56 +27,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $fechaini = (isset($_POST['fechaini']) ? $_POST['fechaini'] : "");
 
 
-  // Se prepara una sentencia SQL para la inserción de datos en la base de datos
-  $stm = $conexion->prepare("INSERT INTO contactos(id, apaterno, amaterno, nombre, email, perfil, servidor, campus, caja, cajaclave, uescritorio, uescritorioclave, uservo, uservoclave, fechaini) 
-VALUES (null, :apaterno, :amaterno, :nombre, :email, :perfil, :servidor, :campus, :caja, :cajaclave, :uescritorio, :uescritorioclave, :uservo, :uservoclave, :fechaini)");
 
-  // Se enlazan los valores a los marcadores de posición en la sentencia SQL
-  $stm->bindParam(":apaterno", $apaterno);
-  $stm->bindParam(":amaterno", $amaterno);
-  $stm->bindParam(":nombre", $nombre);
-  $stm->bindParam(":email", $email);
+  // Verifica si todos los campos obligatorios están completos
+  if (empty($apaterno) || empty($amaterno) || empty($nombre) || empty($email) || empty($perfil) || empty($servidor) || empty($campus) || empty($caja) || empty($cajaclave) || empty($uescritorio) || empty($uescritorioclave) || empty($uservo) || empty($uservoclave) || empty($fechaini)) {
+  } else {
+    $stm = $conexion->prepare("INSERT INTO contactos(id, apaterno, amaterno, nombre, email, perfil, servidor, campus, caja, cajaclave, uescritorio, uescritorioclave, uservo, uservoclave, fechaini) 
+            VALUES (null, :apaterno, :amaterno, :nombre, :email, :perfil, :servidor, :campus, :caja, :cajaclave, :uescritorio, :uescritorioclave, :uservo, :uservoclave, :fechaini)");
 
-  $stm->bindParam(":perfil", $perfil);
-  $stm->bindParam(":servidor", $servidor);
-  $stm->bindParam(":campus", $campus);
+    $stm->bindParam(":apaterno", $apaterno);
+    $stm->bindParam(":amaterno", $amaterno);
+    $stm->bindParam(":nombre", $nombre);
+    $stm->bindParam(":email", $email);
+    $stm->bindParam(":perfil", $perfil);
+    $stm->bindParam(":servidor", $servidor);
+    $stm->bindParam(":campus", $campus);
+    $stm->bindParam(":caja", $caja);
+    $stm->bindParam(":cajaclave", $cajaclave);
+    $stm->bindParam(":uescritorio", $uescritorio);
+    $stm->bindParam(":uescritorioclave", $uescritorioclave);
+    $stm->bindParam(":uservo", $uservo);
+    $stm->bindParam(":uservoclave", $uservoclave);
+    $stm->bindParam(":fechaini", $fechaini);
 
-  $stm->bindParam(":caja", $caja);
-  $stm->bindParam(":cajaclave", $cajaclave);
-  $stm->bindParam(":uescritorio", $uescritorio);
-  $stm->bindParam(":uescritorioclave", $uescritorioclave);
-  $stm->bindParam(":uservo", $uservo);
-  $stm->bindParam(":uservoclave", $uservoclave);
-  $stm->bindParam(":fechaini", $fechaini);
+    $stm->execute();
 
-
-  // Se ejecuta la sentencia SQL para insertar en la base de datos
-  $stm->execute();
-
-  header("Location: " . $_SERVER['REQUEST_URI']); // Se redirige a la página actual después de la inserción en la base de datos
-  exit(); // Se sale del script
+    echo '<script>window.location.href = "index.php";</script>';
+    exit();
+  }
 }
-ob_end_clean(); // Limpia el búfer de salida
+
+ob_end_clean();
 ?>
 
+<style>
+  .modal-container {
+    font-size: 12px;
+    /* Puedes ajustar el tamaño de la fuente según tus preferencias */
+    /* Otros estilos que desees aplicar */
+  }
+</style>
 
 <!-- Modal Create: Modal Bootstrap para agregar un usuario -->
-<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade " id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+        <h5 class="modal-title " id="exampleModalLabel">Agregar Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form action="" method="post"> <!-- Formulario de inserción de datos -->
         <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
+          <div class="container-fluid modal-container">
+
+            <div class="row ">
               <div class="col-md-12">
                 <!-- Campos de entrada para recopilar información del usuario -->
-                <div class="form-group">
+                <div class="form-group ">
                   <label for="apaterno">Apellido Paterno</label>
                   <input type="text" class="form-control" name="apaterno" value="" id="apaterno" placeholder="">
                 </div>
@@ -96,8 +104,8 @@ ob_end_clean(); // Limpia el búfer de salida
             </div>
             <hr>
             <!-- Campos adicionales -->
-            <div class="row">
-              <div class="col-md-4">
+            <div class="row modal-container">
+              <div class="col-md-4 ">
                 <div class="form-group">
                   <label for="perfil">Perfil</label>
                   <select class="form-control" name="perfil" id="perfil">
@@ -113,7 +121,7 @@ ob_end_clean(); // Limpia el búfer de salida
               </div>
 
               <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group modal-container">
                   <label for="campus">Campus</label>
                   <select class="form-control" name="campus" id="campus">
                     <option value="ACUÑA">ACUÑA</option>
@@ -149,7 +157,7 @@ ob_end_clean(); // Limpia el búfer de salida
               </div>
 
               <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group modal-container">
                   <label for="servidor">Servidor</label>
                   <select class="form-control" name="servidor" id="servidor">
                     <option value="187.210.117.201">187.210.117.201</option>
@@ -162,7 +170,7 @@ ob_end_clean(); // Limpia el búfer de salida
 
             <hr>
 
-            <!-- Más campos de entrada -->
+
             <div class="row">
               <!-- Añade un identificador único al campo de entrada de caja -->
               <div class="col-md-6">
@@ -217,13 +225,13 @@ ob_end_clean(); // Limpia el búfer de salida
 
             <!-- Campos de fechas -->
             <div class="row">
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="fechaini">Fecha Hoy</label>
-      <input type="date" class="form-control" name="fechaini" value="" id="fechaini" readonly>
-    </div>
-  </div>
-</div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fechaini">Fecha Hoy</label>
+                  <input type="date" class="form-control" name="fechaini" value="" id="fechaini" readonly>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -285,7 +293,7 @@ ob_end_clean(); // Limpia el búfer de salida
       "TIJUANA": "187.210.117.203",
       "TORREÓN": "187.210.117.203",
       "URUAPAN": "187.210.117.203",
-      "VICTORIA": "187.210.117.203", 
+      "VICTORIA": "187.210.117.203",
       "N/L": "", // Deja este en blanco o establece un valor predeterminado
     };
 
@@ -471,5 +479,28 @@ ob_end_clean(); // Limpia el búfer de salida
 
     // Agrega un evento al campo 'caja' para escuchar cuando cambie
     cajaInput.addEventListener("change", generarUsuario);
+  });
+</script>
+
+<script>
+  // CAMPOS OBLIGATORIOS PARA PODER GUARDAR Espera a que se cargue completamente el contenido del documento HTML
+  document.addEventListener("DOMContentLoaded", function() {
+    // Obtén una referencia al formulario y a los campos relevantes
+    const formulario = document.querySelector("form");
+    const apaternoInput = document.getElementById("apaterno");
+    const amaternoInput = document.getElementById("amaterno");
+    const nombreInput = document.getElementById("nombre");
+    const cajaInput = document.getElementById("caja");
+
+    // Agrega un evento al formulario para escuchar cuando se intente enviar
+    formulario.addEventListener("submit", function(event) {
+      // Verifica si los campos de apellido paterno, materno y nombre están vacíos
+      if (apaternoInput.value.trim() === "" || amaternoInput.value.trim() === "" || cajaInput.value.trim() === "" || nombreInput.value.trim() === "") {
+        // Evita que el formulario se envíe
+        event.preventDefault();
+        // Muestra un mensaje de error
+        alert("Por favor, complete los campos obligatorios de Apellido Paterno, Apellido Materno, Nombre y Número de Caja.");
+      }
+    });
   });
 </script>

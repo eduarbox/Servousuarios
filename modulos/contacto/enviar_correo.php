@@ -24,9 +24,9 @@ $mail->CharSet = 'UTF-8'; // Utilizar UTF-8 para admitir caracteres especiales
 $mail->setFrom('edogary@gmail.com', 'Patronato Cultural Vizcaya.');
 
 // Agregar una copia (CC) al correo electrónico almacenado en la variable $contacto['email']
-//$mail->addCC(eduarbox@icloud.com);
+//$mail->addCC(usuario@dominio.com);
 
-$mail->addReplyTo('control_equipos@uva.edu.mx', 'Patronato Cultural Vizcaya.');
+//$mail->addReplyTo('edogary@gmail.com', 'Patronato Cultural Vizcaya.');
 $mail->isHTML(true);
 
 $servidor = "localhost";
@@ -73,12 +73,14 @@ if ($conexion) {
                     background-color: #f0f0f0; /* Color de fondo del correo */
                     margin: 0;
                     padding: 0;
+                    
                 }
                 .container {
                     background-color: #ffffff; /* Color de fondo del contenido */
                     padding: 20px;
                     border-radius: 5px;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    
                 }
                 h1 {
                     color: #333333; /* Color del encabezado */
